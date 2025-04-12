@@ -1,48 +1,71 @@
-.TH xsct 1 "Jun 2024" "2.3" "User Manual"
+.\"
+.\" The original code by Ted Unangst is in public domain:
+.\" <https://flak.tedunangst.com/post/sct-set-color-temperature>
+.\" <https://flak.tedunangst.com/files/sct.c>
+.\" Manual page written by zvezdochiot and others
+.\" <https://github.com/faf0/sct/commits/master/xsct.1>.
+.\" Typographically modified by me (rapidcow duh)
+.\"
+.TH XSCT 1 "2024-06-24" "xsct 2.3" "User Manual"
 .SH NAME
 xsct \- X11 set screen color temperature
 .SH SYNOPSIS
-.B xsct 
-[options] 
-.I [temperature]
-.I [brightness]
-
+.SY xsct 
+.RB [ \-hvdt ]
+.\" XXX: space? \[space] or \~ (GNU extension)?
+.RB [ -s \ \c
+.IR N ]
+.RB [ -c \ \c
+.IR N ]
+.RI [ temperature ]
+.RI [ brightness ]
 .SH DESCRIPTION
 .B xsct
 sets the screen's color temperature.
-
 .SH OPTIONS
 .TP
-.B -h, --help
-Display usage information and exit
+.BR \-h ", " \-\-help
+Display usage information and exit.
 .TP
-.B -v, --verbose
-Display debugging information
+.BR \-v ", " \-\-verbose
+Display debugging information.
 .TP
-.B -d, --delta
-Shift temperature and brightness by temperature and brightness value
+.BR \-d ", " \-\-delta
+Shift temperature and brightness relative to the
+current temperature and brightness value.
+.\" \continuing is necessary if we want them to
+.\" stay on the same line of the tagged paragraph.
 .TP
-.B -s, --screen N
+.BR \-s ", " \-\-screen\c
+.RI " " N
+.\" XXX: ... by screen you mean X display (:N), right
 Zero-based index of screen to use.
 .TP
-.B -t, --toggle
+.BR \-t ,\  \-\-toggle
 Toggle between night and day temperature.
 .TP
-.B -c, --crtc N
+.BR \-c ,\  \-\-crtc\c
+.RI " " N
 Zero-based index of CRTC to use.
 .TP
-.I [temperature]
-Black body temperature
-.br
-If the value is 0, xsct sets the color temperature to the default of 6500
-.br
-If no arguments are passed, xsct estimates the current display temperature and brightness
+.RI [ temperature ]
+Black body temperature.
+.RS 9
+.IP \[bu] 3
+If the value is 0, xsct sets the color temperature to the default of 6500;
+.IP \[bu] 3
+If no arguments are passed, xsct estimates the current display temperature and brightness.
+.RE
+.\" This .P seems necessary to pad .RI/.RE
+.P
 .TP
-.I [brightness]
-Linear brightness between 0.0 (inclusive) and 1.0 (inclusive). The default value is 1.0 if no parameter is passed.
-
+.RI [ brightness ]
+Linear brightness between 0.0 (inclusive) and 1.0 (inclusive).
+The default value is 1.0 if no parameter is passed.
 .SH AUTHOR
-xsct is based on sct by Ted Unangst <tedu@openbsd.org>
-
+.B xsct is based on
+.B sct
+by Ted Unangst <tedu@openbsd.org>.
 .SH SEE ALSO
-redshift(1), xtemp(1)
+.BR redshift (1),
+.BR xtemp (1)
